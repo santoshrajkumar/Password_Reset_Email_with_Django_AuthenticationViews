@@ -31,3 +31,14 @@ EMAIL_USE_TLS = True / False depending on your email
 EMAIL_HOST_USER = 'your remail id'
 EMAIL_HOST_PASSWORD = 'your email password'
 ```
+- For Gmail, the configuration will be :
+```python
+#SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'yourid@gmail.com'
+EMAIL_HOST_PASSWORD = 'your gmail password'
+```
+* Also keep in mind that you need to go to https://myaccount.google.com/lesssecureapps?pli=1 and turn allow less secure apps ON. Otherwise Gmail will block your django apps request to access your Gmail to send the password reset email.
