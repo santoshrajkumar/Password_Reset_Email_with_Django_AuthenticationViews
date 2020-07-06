@@ -33,7 +33,6 @@ EMAIL_HOST_PASSWORD = 'your email password'
 ```
 - For Gmail, the configuration will be :
 ```python
-#SMTP Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
