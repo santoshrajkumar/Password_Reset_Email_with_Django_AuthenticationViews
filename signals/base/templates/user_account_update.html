@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update User Profile</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<style>
+  #navitemImg{
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    border-style: solid;
+    border-radius: 5px;
+  }
+
+
+  #navitem:hover {
+    background: #333;
+    color:aliceblue;
+  }
+
+  .social{
+    font-size: 30px;
+    color: #666;
+  }
+
+  .card{
+    border-style:groove;
+    padding:10px;
+  }
+  
+</style>
+
+<body>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-brand" href="/" id="navitem">Home</a></li>
+        <li><a class="navbar" href="/admin/" id="navitem">Admin</a></li>
+
+        <li><span class="navbar">Hello, {{request.user.profile.first_name}}</span></li>
+        <li><img class="navbar" id="navitemImg" src="{{request.user.profile.profile_pic.url}}" ></li>
+        <li><a href="{% url 'logout' %}" class="navbar" id="navitem">logout</a></span></li>
+        
+        
+      </ul>
+        
+      
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="well well-sm">
+              <div class="row">
+                  <div class="col-sm-6 col-md-4">
+                      <img src="{{request.user.profile.profile_pic.url}}" alt="" class="img-rounded img-responsive" />
+                  </div>
+                  <div class="col-sm-6 col-md-8">
+                      <h4> {{request.user.profile.first_name}} {{request.user.profile.last_name}}</h4>
+                      
+                      <p>
+                          <i class="fas fa-envelope">  {{request.user.profile.email}} </i> 
+                          <br/>
+                          <i class="fas fa-phone-square">  {{request.user.profile.phone}}</i>
+                          <br />
+                          <i class="fas fa-handshake"></i>  <strong>Joined on : </strong>  {{request.user.profile.date_created}}</p>
+                      <!-- Split button -->
+                      <div class="btn-group">
+                        <a href="{{request.user.profile.facebook_link}}" target="blank" class="social"><i class="fab fa-facebook"></i></a>
+                          
+                        <a href="{{request.user.profile.github_link}}" target="blank" class="social"><i class="fab fa-github"></i></a>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+            
+  <div class="card">
+			
+    <form method="POST" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form.as_p}}
+  
+    <input class="btn btn-primary" type="submit" name="Update Information">
+    </form>
+  </div>
+
+  <a href="{% url 'deletepage' %}" class="btn btn-primary">Delete Profile</a>
+
+  {% for message in messages %}
+			<p id="messages">{{message}}</p>
+	{% endfor %}	
+            
+  </div>
+  
+
+</body>
+</html>

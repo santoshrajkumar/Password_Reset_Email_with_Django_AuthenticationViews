@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+</head>
+<title>UserList created with Django Signals</title>
+<style>
+  #navitemImg{
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    border-style: solid;
+    border-radius: 5px;
+  }
+
+
+  #navitem:hover {
+    background: #333;
+    color:aliceblue;
+  }
+
+  #delete{
+    background: red;
+  }
+  
+</style>
+
+<body>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-brand" href="/" id="navitem">Home</a></li>
+        <li><a class="navbar" href="/admin/" id="navitem">Admin</a></li>
+
+        <li><span class="navbar">Hello, {{request.user.profile.first_name}}</span></li>
+        <li><a href="{% url 'userupdate' %}"><img class="navbar" id="navitemImg" src="{{request.user.profile.profile_pic.url}}" ></a></li>
+        <li><a href="{% url 'logout' %}" class="navbar" id="navitem">logout</a></span></li>
+        
+        
+      </ul>
+        
+      
+    </div>
+  </nav>
+  
+  <div class="container">
+
+      <h2> Are you sure to delete your profile ?? </h2>
+      <br>
+      <a href="{% url 'deleteprofile' %}" class="btn btn-primary" id="delete">Yes I'm Sure</a>
+      <br>
+      <br>
+      <a href="{% url 'index' %}" class="btn btn-primary">No ! Take me Home</a>
+
+            
+  </div>
+  
+  
+</body>
+</html>
