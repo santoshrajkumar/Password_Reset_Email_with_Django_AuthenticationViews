@@ -20,3 +20,14 @@ urlpatterns = [
   path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
 ]
 ```
+
+### Now add the SMTP configuration in the settings.py file for the email address you'll be using to send password reset email:
+
+```python
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'your email host'
+EMAIL_PORT = email port
+EMAIL_USE_TLS = True / False depending on your email
+EMAIL_HOST_USER = 'your remail id'
+EMAIL_HOST_PASSWORD = 'your email password'
+```
